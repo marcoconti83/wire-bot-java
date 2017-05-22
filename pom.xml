@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>echo</artifactId>
+    <artifactId>roller</artifactId>
     <groupId>com.wire.bots</groupId>
     <version>0.1.4</version>
 
@@ -103,7 +103,7 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.4.3</version>
                 <configuration>
-                    <finalName>echo</finalName>
+                    <finalName>roller</finalName>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <artifactSet>
                         <excludes>
@@ -133,7 +133,7 @@
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.wire.bots.echo.EchoService</mainClass>
+                                    <mainClass>com.wire.bots.roller.Service</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

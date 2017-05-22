@@ -1,5 +1,5 @@
 SHELL := /usr/bin/env bash
-BOT   := hello
+BOT   := roller
 OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 
 CERTS_DIR		    := certs
@@ -60,4 +60,4 @@ clean:
 
 .PHONY: run
 run:
-	java -jar target/echo.jar server conf/echo.yaml
+	java -jar target/$(BOT).jar server conf/$(BOT).yaml

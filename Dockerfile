@@ -1,8 +1,8 @@
 FROM wire/bots.runtime:latest
 
-COPY target/echo.jar /opt/echo/echo.jar
-COPY keystore.jks    /opt/echo/keystore.jks
+COPY target/roller.jar /opt/roller/roller.jar
+COPY keystore.jks      /opt/roller/keystore.jks
 
-WORKDIR /opt/echo
+WORKDIR /opt/roller
 EXPOSE  443
 
