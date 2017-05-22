@@ -2,19 +2,19 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: echo
+  name: roller
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: echo
+        name: roller
     spec:
       restartPolicy: Always
 
       containers:
-        - name: echo
-          image: eu.gcr.io/wire-bot/echo:latest
+        - name: roller
+          image: eu.gcr.io/wire-bot/roller:latest
 
           resources:
             requests:
@@ -26,53 +26,53 @@ spec:
             - name: TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: echo-knows
+                  name: roller-knows
                   key: token
 
             - name: KEYSTORE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: echo-knows
+                  name: roller-knows
                   key: keystore_password
 
-
           volumeMounts:
-            - name: cryptobox-echo
-              mountPath: /var/lib/echo/crypto
+            - name: roller-disk
+              mountPath: /var/lib/roller/crypto
 
-            - name: echo-config
-              mountPath: /etc/echo
+            - name: roller-config
+              mountPath: /etc/roller
 
           command:
             - "/usr/bin/java"
             - "-Ddw.server.applicationConnectors[1].keyStorePassword=$(KEYSTORE_PASSWORD)"
             - "-Ddw.auth=$(TOKEN)"
-            - "-Ddw.cryptoDir=/var/lib/echo/crypto"
+            - "-Ddw.cryptoDir=/var/lib/roller/crypto"
             - "-jar"
-            - "echo.jar"
+            - "roller.jar"
             - "server"
-            - "/etc/echo/echo.yaml"
+            - "/etc/roller/roller.yaml"
 
       volumes:
-        - name: cryptobox-echo
+        - name: roller-disk
           gcePersistentDisk:
-            pdName: cryptobox-echo
+            pdName: roller-disk
             fsType: ext4
 
-        - name: echo-config
+        - name: roller-config
           configMap:
-            name: echo-config
+            name: roller-config
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo
+  name: roller
 spec:
   selector:
-    name: echo
+    name: roller
   type: LoadBalancer
   ports:
     - name: https
       port: 443
+      targetPort: 4443
       protocol: TCP

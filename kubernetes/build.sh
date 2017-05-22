@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME="echo"
+NAME="roller"
 
 (cd ..; mvn -Plinux package)
 docker build --tag wire/$NAME -f ../Dockerfile ../.
