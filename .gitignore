@@ -10,3 +10,4 @@ crypto/
 /rollerlib/build/
 keystore.jks
 deploy.sh
+deployment.tgz
