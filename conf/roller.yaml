@@ -16,7 +16,7 @@ server:
   requestLog:
     appenders: []
 
-auth: 'token'
+auth: '%token%'
 name: roller
 accent: 2
 cryptoDir: crypto

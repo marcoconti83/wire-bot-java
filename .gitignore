@@ -9,5 +9,5 @@ crypto/
 /rollerlib/nbproject/private/
 /rollerlib/build/
 keystore.jks
-deploy.sh
 deployment.tgz
+deployment.conf
